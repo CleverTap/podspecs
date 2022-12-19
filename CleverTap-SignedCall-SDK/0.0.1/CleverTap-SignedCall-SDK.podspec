@@ -19,6 +19,5 @@ s.vendored_frameworks       = 'SignedCallSDK.xcframework'
 s.ios.dependency            'Socket.IO-Client-Swift', '16.0.1'
 s.ios.dependency            'CTSoftPhone', '0.0.5-alpha'
 s.ios.dependency            'CTSimplePing', '1.0.1'
-s.ios.dependency            'CleverTap-iOS-SDK', '4.1.4'
 
 end
