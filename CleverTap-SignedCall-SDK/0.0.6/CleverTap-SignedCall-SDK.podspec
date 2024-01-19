@@ -8,8 +8,8 @@ s.license                   = { :type => 'Commercial', :text => 'Copyright (c) 2
 s.author                    = { "CleverTap" => "http://www.clevertap.com" }
 s.module_name               = 'SignedCallSDK'
 
-s.platform                  = :ios, '10.0'
-s.ios.deployment_target     = '10.0'
+s.platform                  = :ios, '12.0'
+s.ios.deployment_target     = '12.0'
 s.swift_version             = "5.0"
 
 s.ios.frameworks            = 'Foundation', 'UIKit', 'Security', 'CoreGraphics', 'CoreImage', 'CoreFoundation', 'AVFoundation', 'AudioToolbox', 'VideoToolbox'
