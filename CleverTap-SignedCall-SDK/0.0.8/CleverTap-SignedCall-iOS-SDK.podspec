@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name                      = "CleverTap-SignedCall-iOS-SDK"
-version                     = `cat sdk-version.txt`
+version                     = `0.0.8`
 s.version                   =  version
 s.summary                   = "CleverTap-SignedCall-iOS-SDK supports 1-1 voice calls"
 s.homepage                  = "https://github.com/CleverTap/clevertap-directcall-ios-sdk"
