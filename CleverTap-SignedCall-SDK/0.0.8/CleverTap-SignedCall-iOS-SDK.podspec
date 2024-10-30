@@ -1,10 +1,9 @@
 Pod::Spec.new do |s|
-s.name                      = "CleverTap-SignedCall-iOS-SDK"
-version                     = `0.0.8`
-s.version                   =  version
-s.summary                   = "CleverTap-SignedCall-iOS-SDK supports 1-1 voice calls"
-s.homepage                  = "https://github.com/CleverTap/clevertap-directcall-ios-sdk"
-s.source                    = { :http => "https://github.com/CleverTap/clevertap-directcall-ios-sdk/releases/download/#{s.version}/DirectCallSDK.xcframework.zip" }
+s.name                      = "CleverTap-SignedCall-SDK"
+s.version                   = '0.0.8'
+s.summary                   = "CleverTap-SignedCall-SDK supports 1-1 voice calls"
+s.homepage                  = "https://github.com/CleverTap/clevertap-signedcall-ios-sdk"
+s.source                    = { :http => "https://github.com/CleverTap/clevertap-signedcall-ios-sdk/releases/download/#{s.version}/SignedCallSDK.xcframework.zip" }
 s.license                   = { :type => 'Commercial', :text => 'Copyright (c) 2022 CleverTap. All rights reserved. Use of this software is subject to the terms and conditions of the CleverTap Terms of Service' }
 s.author                    = { "CleverTap" => "http://www.clevertap.com" }
 s.module_name               = 'SignedCallSDK'
