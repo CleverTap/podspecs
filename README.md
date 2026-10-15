@@ -47,22 +47,13 @@ Order per release: push here first, validate, then push to trunk. Pushing here f
 gives a clean validation window, because the new version exists only in this repo until
 the trunk push happens.
 
-### 1. Register this repo once
-
-```bash
-pod repo add clevertap-podspecs https://github.com/CleverTap/podspecs.git
-```
-
-Check it is registered with `pod repo list`. You need git push access to
-`github.com/CleverTap/podspecs` for the push to succeed.
-
-### 2. Refresh the local clone
+### 1. Refresh the local clone
 
 ```bash
 pod repo update clevertap-podspecs
 ```
 
-### 3. Hardcode the version (CleverTap-iOS-SDK and CleverTapLocation only)
+### 2. Hardcode the version (CleverTap-iOS-SDK and CleverTapLocation only)
 
 These two podspecs read their version by running `cat sdk-version.txt`. That works inside
 the SDK repo. It fails when a client reads the raw podspec from this repo, because the
@@ -78,7 +69,7 @@ sed "s/\`cat sdk-version.txt\`/\"$VERSION\"/" CleverTapLocation.podspec > /tmp/c
 
 Pods with a literal version in their podspec skip this step and push the file directly.
 
-### 4. Push (main pod before Location)
+### 3. Push (main pod before Location)
 
 Push CleverTap-iOS-SDK first. CleverTapLocation depends on it, so it must resolve during
 the lint.
@@ -92,29 +83,7 @@ pod repo push clevertap-podspecs /tmp/ct-podspecs/location/CleverTapLocation.pod
 - `--skip-tests`: skips the test spec lint, which can fail when all dependencies are not
   resolvable in the push environment.
 
-### 5. Validate (optional but recommended)
-
-While the version is here and not yet on trunk, a test app that requests it can only
-resolve from this repo. That proves this repo serves the pod.
-
-```bash
-mkdir -p ~/ct-pod-validate && cd ~/ct-pod-validate
-cat > Podfile <<EOF
-source 'https://github.com/CleverTap/podspecs.git'
-source 'https://cdn.cocoapods.org/'
-platform :ios, '12.0'
-target 'TestApp' do
-  pod 'CleverTap-iOS-SDK', '$VERSION'
-end
-EOF
-pod install
-grep -A6 "SPEC REPOS" Podfile.lock   # the pod must appear under github.com/CleverTap/podspecs
-```
-
-Do this before the trunk push. After the trunk push the same version is also on the CDN,
-and the CDN will satisfy the request, so the result is no longer a clean proof.
-
-### 6. Push to trunk (while trunk is still writable)
+### 4. Push to trunk (while trunk is still writable)
 
 Use the original podspec files, not the sed copies. Trunk evaluates the podspec at upload
 time, so the `cat sdk-version.txt` version works there.
@@ -124,7 +93,7 @@ pod trunk push CleverTap-iOS-SDK.podspec  --allow-warnings
 pod trunk push CleverTapLocation.podspec  --allow-warnings
 ```
 
-After December 2, 2026 there is no trunk push. Do steps 1 to 5 only.
+After December 2, 2026 there is no trunk push. Do steps 1 to 4 only.
 
 ## Notes
 
