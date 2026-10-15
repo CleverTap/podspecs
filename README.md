@@ -1,21 +1,25 @@
-# Beta release podspecs
+# CleverTap CocoaPods specs repo
 
-This repository is for [CocoaPods](https://cocoapods.org) podspecs for beta distribution (not ready for CocoaPods `trunk` yet).
+This is CleverTap's own [CocoaPods](https://cocoapods.org/) specs repository. It is a
+catalog of podspecs that points at the real source code in each pod's own repo. We
+control it permanently.
 
-## Using this repo 
+## Why this repo exists
 
-1. Add this pod spec repo as a source in your `Podfile`:
-   ```
+CocoaPods trunk becomes permanently read-only on December 2, 2026. After that date no
+one can publish new pod versions to trunk. This repo replaces trunk as the place
+CleverTap publishes new releases. Every CleverTap release is pushed here so you keep
+receiving updates after trunk closes.
+
+The trunk CDN (`cdn.cocoapods.org`) stays online after the read-only date. Every version
+already on trunk keeps resolving from it. We do not copy old versions into this repo.
+This repo only carries versions released from now on.
+
+## Using this repo (for app developers)
+
+1. Add this repo as a source in your `Podfile`, and keep the CocoaPods CDN source so
+   third-party pods such as SDWebImage still resolve:
+
+   ```ruby
    source 'https://github.com/CleverTap/podspecs.git'
-   source 'https://github.com/CocoaPods/Specs.git'
-   ```
-   (Be sure to also add the main CocoaPods trunk repo to continue installing other pods.)
-
-1. In your `Podfile`, bump the pod you want to use to a version that exists in this repo.
-1. `pod install --repo-update`
-
-## Pushing to this repo
-
-1. `pod repo add clevertap-specs https://github.com/CleverTap/podspecs` (only do once initially)
-1. Make sure your `podspec` file has the name and and custom version you expect. 
-1. `pod repo push clevertap-specs <podspec-name>.podspec`
+   source 'https://cdn.cocoapods.org/'
